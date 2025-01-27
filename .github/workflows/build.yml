@@ -26,11 +26,13 @@ jobs:
 
       - name: List FAP location
         run: |
-          find /home/runner/ufbt -name "*.fap" -type f
+          find /home/runner -name "*.fap" -type f 2>/dev/null
 
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
           name: servo_control
-          path: /home/runner/ufbt/build/servo_control_dir/servo_control.fap
+          path: |
+            /home/runner/ufbt/current/servo_control.fap
+            /home/runner/.ufbt/build/servo_control.fap
           if-no-files-found: warn
