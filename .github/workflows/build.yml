@@ -22,5 +22,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.event.repository.name }}
-          path: dist/${{ github.event.repository.name }}.fap
-          
+          path: |
+            .ufbt/build/*.fap
