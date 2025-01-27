@@ -17,10 +17,12 @@ jobs:
       - name: Build
         uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
         id: build-app
+        with:
+          task: "fap"
+          sdk-channel: "release"
 
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}
-          path: |
-            .ufbt/build/*.fap
+          name: servo_control
+          path: ${{ steps.build-app.outputs.fap-artifacts }}
