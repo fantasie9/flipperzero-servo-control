@@ -22,11 +22,13 @@ jobs:
 
       - name: Find FAP file
         id: find-fap
+        shell: bash
         run: |
-          echo "FAP_PATH=$(find . -name '*.fap')" >> $GITHUB_ENV
+          echo "fap_path=$(find /home/runner/.ufbt/build -name '*.fap')" >> $GITHUB_OUTPUT
 
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
           name: servo_control
-          path: ${{ env.FAP_PATH }}
+          path: ${{ steps.find-fap.outputs.fap_path }}
+          if-no-files-found: error
