@@ -20,15 +20,12 @@ jobs:
         with:
           task: "fap"
 
-      - name: Find FAP file
-        id: find-fap
-        shell: bash
+      - name: List build directory
         run: |
-          echo "fap_path=$(find /home/runner/.ufbt/build -name '*.fap')" >> $GITHUB_OUTPUT
+          ls -la /home/runner/.ufbt/build/
 
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
           name: servo_control
-          path: ${{ steps.find-fap.outputs.fap_path }}
-          if-no-files-found: error
+          path: /home/runner/.ufbt/build/servo_control.fap
