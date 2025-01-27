@@ -19,10 +19,14 @@ jobs:
         id: build-app
         with:
           task: "fap"
-          sdk-channel: "release"
+
+      - name: Find FAP file
+        id: find-fap
+        run: |
+          echo "FAP_PATH=$(find . -name '*.fap')" >> $GITHUB_ENV
 
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
           name: servo_control
-          path: ${{ steps.build-app.outputs.fap-artifacts }}
+          path: ${{ env.FAP_PATH }}
