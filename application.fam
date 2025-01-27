@@ -11,6 +11,6 @@ App(
     fap_category="GPIO",
     fap_version="1.0",
     fap_description="Servo control app for A7 pin with 1000us-2000us range",
-    fap_author="Your Name",
-    fap_weburl="https://github.com/your-username/your-repo",
+    fap_author="fantasie",
+    fap_weburl="https://github.com/fantasie9/flipperzero-servo-control",
 )
