@@ -21,7 +21,6 @@ jobs:
 
       - name: Build FAP
         run: |
-          mkdir -p dist
           python3 -m pip install --upgrade ufbt
           ufbt build
 
@@ -29,4 +28,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: servo_control
-          path: build/servo_control.fap
+          path: |
+            /home/runner/ufbt/build/servo_control_dir/servo_control.fap
+            /home/runner/ufbt/build/servo_control.fap
