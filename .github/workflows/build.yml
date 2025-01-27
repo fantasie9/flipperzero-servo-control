@@ -14,18 +14,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build
-        uses: flipperdevices/flipperzero-ufbt-action@v0.1.2
-        id: build-app
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          task: "fap"
+          python-version: '3.11'
 
-      - name: List build directory
+      - name: Build FAP
         run: |
-          ls -la /home/runner/.ufbt/build/
+          mkdir -p dist
+          python3 -m pip install --upgrade ufbt
+          ufbt build
 
       - name: Upload app artifacts
         uses: actions/upload-artifact@v3
         with:
           name: servo_control
-          path: /home/runner/.ufbt/build/servo_control.fap
+          path: build/servo_control.fap
